@@ -24,6 +24,7 @@ public class GroupHand {
         System.out.println(playerHand);
         cards[4] = playerHand.substring(0, playerHand.indexOf("|"));
 
+
     }
 
 
