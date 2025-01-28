@@ -1,12 +1,34 @@
 public class GroupHand {
 
-    public String card1;
-    public String card2;
-    public String card3;
-    public String card4;
-    public String card5;
+    public int fiveOfAKind = 0;
+    public int fourOfAKind = 0;
+    public int threeOfAKind = 0;
+    public int twoPair = 0;
+    public int onePair = 0;
+    public int highCard = 0;
 
     public GroupHand (String playerHand){
 
+    }
+
+    public void AssignHand (){
+        if (){
+            fiveOfAKind++;
+        }
+        if (){
+            fourOfAKind++
+        }
+        if (){
+            threeOfAKind++
+        }
+        if (){
+            twoPair++
+        }
+        if (){
+            onePair++
+        }
+        if (){
+            highCard++
+        }
     }
 }
