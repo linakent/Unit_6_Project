@@ -16,19 +16,19 @@ public class GroupHand {
             fiveOfAKind++;
         }
         if (){
-            fourOfAKind++
+            fourOfAKind++;
         }
         if (){
-            threeOfAKind++
+            threeOfAKind++;
         }
         if (){
-            twoPair++
+            twoPair++;
         }
         if (){
-            onePair++
+            onePair++;
         }
         if (){
-            highCard++
+            highCard++;
         }
     }
 }
