@@ -27,24 +27,48 @@ public class GroupHand {
 
     }
 
+    public int countCard(String target) {
+        int numOfTimes = 0;
+        for (int x = 0; x < cards.length; x ++) {
+            if (cards[x].equals(target))
+                numOfTimes ++;
+            }
+        }
+        return numOfTimes;
+    }
 
     public void AssignHand (){
-        if (){
+
+        int numOfAce = countCard("Ace");
+        int numOfKing = countCard("King");
+        int numOfQueen = countCard("Queen");
+        int numOfJack = countCard("Jack");
+        int numOf10 = countCard("10");
+        int numOf9 = countCard("9");
+        int numOf8 = countCard("8");
+        int numOf7 = countCard("7");
+        int numOf6 = countCard("6");
+        int numOf5 = countCard("5");
+        int numOf4 = countCard("4");
+        int numOf3 = countCard("3");
+        int numOf2 = countCard("2");
+
+        if (1 == 0){
             fiveOfAKind++;
         }
-        if (){
+        if (1 == 0){
             fourOfAKind++;
         }
-        if (){
+        if (1 == 0){
             threeOfAKind++;
         }
-        if (){
+        if (1 == 0){
             twoPair++;
         }
-        if (){
+        if (1 == 0){
             onePair++;
         }
-        if (){
+        if (1 == 0){
             highCard++;
         }
     }
