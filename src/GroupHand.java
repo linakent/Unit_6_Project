@@ -53,6 +53,7 @@ public class GroupHand {
         int numOf3 = countCard("3");
         int numOf2 = countCard("2");
 
+
         if (1 == 0){
             fiveOfAKind++;
         }
