@@ -23,6 +23,7 @@ public class GroupHand {
         playerHand = playerHand.substring(playerHand.indexOf(",") + 1);
         System.out.println(playerHand);
         cards[4] = playerHand.substring(0, playerHand.indexOf("|"));
+
     }
 
 
