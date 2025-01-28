@@ -30,7 +30,7 @@ public class GroupHand {
     public int countCard(String target) {
         int numOfTimes = 0;
         for (int x = 0; x < cards.length; x ++) {
-            if (cards[x].equals(target))
+            if (cards[x].equals(target)) {
                 numOfTimes ++;
             }
         }
