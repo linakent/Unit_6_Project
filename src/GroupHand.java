@@ -1,12 +1,6 @@
 public class GroupHand {
 
     private String[] cards;
-    public int fiveOfAKind = 0;
-    public int fourOfAKind = 0;
-    public int threeOfAKind = 0;
-    public int twoPair = 0;
-    public int onePair = 0;
-    public int highCard = 0;
 
     public GroupHand (String playerHand){
         cards = new String[5];
@@ -37,7 +31,7 @@ public class GroupHand {
         return numOfTimes;
     }
 
-    public void AssignHand (){
+    public String assignHand(){
 
         int numOfAce = countCard("Ace");
         int numOfKing = countCard("King");
@@ -55,22 +49,22 @@ public class GroupHand {
 
 
         if (numOfAce == 5 || numOfKing == 5 || numOfQueen == 5 || numOfJack == 5 || numOf10 == 5 || numOf9 == 5 || numOf8 == 5 || numOf7 == 5 || numOf6 == 5 || numOf5 == 5 || numOf4 == 5 || numOf4 == 5 || numOf3 == 5 || numOf2 == 5){
-            fiveOfAKind++;
+            return "five";
         }
         else if (numOfAce == 4 || numOfKing == 4 || numOfQueen == 4 || numOfJack == 4 || numOf10 == 4 || numOf9 == 4 || numOf8 == 4 || numOf7 == 4 || numOf6 == 4 || numOf5 == 4 || numOf4 == 4 || numOf4 == 4 || numOf3 == 4 || numOf2 == 4){
-            fourOfAKind++;
+            return "four";
         }
         else if (numOfAce == 3 || numOfKing == 3 || numOfQueen == 3 || numOfJack == 3 || numOf10 == 3 || numOf9 == 3 || numOf8 == 3 || numOf7 == 3 || numOf6 == 3 || numOf5 == 3 || numOf4 == 3 || numOf4 == 3 || numOf3 == 3 || numOf2 == 3){
-            threeOfAKind++;
+            return "three";
         }
         else if (numOfAce == 2 || numOfKing == 2 || numOfQueen == 2 || numOfJack == 2 || numOf10 == 2 || numOf9 == 2 || numOf8 == 2 || numOf7 == 2 || numOf6 == 2 || numOf5 == 2 || numOf4 == 2 || numOf4 == 2 || numOf3 == 2 || numOf2 == 2){
-            twoPair++;
+            return "two";
         }
         else if (numOfAce == 1 || numOfKing == 1 || numOfQueen == 1 || numOfJack == 1 || numOf10 == 1 || numOf9 == 1 || numOf8 == 1 || numOf7 == 1 || numOf6 == 1 || numOf5 == 1 || numOf4 == 1 || numOf4 == 1 || numOf3 == 1 || numOf2 == 1){
-            onePair++;
+            return "one";
         }
         else {
-            highCard++;
+            return "high";
         }
     }
 }
