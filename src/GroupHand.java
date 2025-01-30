@@ -29,7 +29,7 @@ public class GroupHand {
 
     public int countCard(String target) {
         int numOfTimes = 0;
-        for (int x = 0; x < cards.length; x ++) {
+        for (int x = 0; x < cards.length; x ++;) {
             if (cards[x].equals(target)) {
                 numOfTimes ++;
             }
@@ -54,22 +54,22 @@ public class GroupHand {
         int numOf2 = countCard("2");
 
 
-        if (1 == 0){
+        if (numOfAce == 5 || numOfKing == 5 || numOfQueen == 5 || numOfJack == 5 || numOf10 == 5 || numOf9 == 5 || numOf8 == 5 || numOf7 == 5 || numOf6 == 5 || numOf5 == 5 || numOf4 == 5 || numOf4 == 5 || numOf3 == 5 || numOf2 == 5){
             fiveOfAKind++;
         }
-        if (1 == 0){
+        else if (numOfAce == 4 || numOfKing == 4 || numOfQueen == 4 || numOfJack == 4 || numOf10 == 4 || numOf9 == 4 || numOf8 == 4 || numOf7 == 4 || numOf6 == 4 || numOf5 == 4 || numOf4 == 4 || numOf4 == 4 || numOf3 == 4 || numOf2 == 4){
             fourOfAKind++;
         }
-        if (1 == 0){
+        else if (numOfAce == 3 || numOfKing == 3 || numOfQueen == 3 || numOfJack == 3 || numOf10 == 3 || numOf9 == 3 || numOf8 == 3 || numOf7 == 3 || numOf6 == 3 || numOf5 == 3 || numOf4 == 3 || numOf4 == 3 || numOf3 == 3 || numOf2 == 3){
             threeOfAKind++;
         }
-        if (1 == 0){
+        else if (numOfAce == 2 || numOfKing == 2 || numOfQueen == 2 || numOfJack == 2 || numOf10 == 2 || numOf9 == 2 || numOf8 == 2 || numOf7 == 2 || numOf6 == 2 || numOf5 == 2 || numOf4 == 2 || numOf4 == 2 || numOf3 == 2 || numOf2 == 2){
             twoPair++;
         }
-        if (1 == 0){
+        else if (numOfAce == 1 || numOfKing == 1 || numOfQueen == 1 || numOfJack == 1 || numOf10 == 1 || numOf9 == 1 || numOf8 == 1 || numOf7 == 1 || numOf6 == 1 || numOf5 == 1 || numOf4 == 1 || numOf4 == 1 || numOf3 == 1 || numOf2 == 1){
             onePair++;
         }
-        if (1 == 0){
+        else {
             highCard++;
         }
     }
