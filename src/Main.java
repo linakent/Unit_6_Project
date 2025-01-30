@@ -10,6 +10,7 @@ public class Main {
 
         // step 1: create a file object
         File f = new File("src/input_file");
+        PartOne partOne = new PartOne();
 
         String fileData = "";
         try {
@@ -21,10 +22,8 @@ public class Main {
 
             // a String array where every item in the array is a line from the file
             String[] fileArray = fileData.split("\n");
-            for (int x = 0; x < fileArray.length; x++) {
-
-            }
-
+            partOne.getPartOneAnswer(fileArray);
+            System.out.println(partOne);
 
         }
         catch (FileNotFoundException fe) {

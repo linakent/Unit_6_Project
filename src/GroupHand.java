@@ -6,16 +6,12 @@ public class GroupHand {
         cards = new String[5];
         cards[0] = playerHand.substring(0, playerHand.indexOf(","));
         playerHand = playerHand.substring(playerHand.indexOf(",") + 1);
-        System.out.println(playerHand);
         cards[1] = playerHand.substring(0, playerHand.indexOf(","));
         playerHand = playerHand.substring(playerHand.indexOf(",") + 1);
-        System.out.println(playerHand);
         cards[2] = playerHand.substring(0, playerHand.indexOf(","));
         playerHand = playerHand.substring(playerHand.indexOf(",") + 1);
-        System.out.println(playerHand);
         cards[3] = playerHand.substring(0, playerHand.indexOf(","));
         playerHand = playerHand.substring(playerHand.indexOf(",") + 1);
-        System.out.println(playerHand);
         cards[4] = playerHand.substring(0, playerHand.indexOf("|"));
 
     }
@@ -46,6 +42,14 @@ public class GroupHand {
         int numOf3 = countCard("3");
         int numOf2 = countCard("2");
 
+        String string = "" + numOfAce + numOfKing + numOfQueen + numOfJack + numOf2 + numOf3 + numOf4 + numOf5 + numOf6 + numOf7 + numOf8 + numOf9 + numOf10;
+        boolean ifOnePair = string.indexOf("2") != -1;
+        boolean ifTwoPair = false;
+        if (ifOnePair) {
+            string = string.substring(string.indexOf("2") + 1);
+            ifTwoPair = string.indexOf("2") != -1;
+        }
+
         if ((numOfAce == 3 || numOfKing == 3 || numOfQueen == 3 || numOfJack == 3 || numOf10 == 3 || numOf9 == 3 || numOf8 == 3 || numOf7 == 3 || numOf6 == 3 || numOf5 == 3 || numOf4 == 3 || numOf4 == 3 || numOf3 == 3 || numOf2 == 3) &&(numOfAce == 2 || numOfKing == 2 || numOfQueen == 2 || numOfJack == 2 || numOf10 == 2 || numOf9 == 2 || numOf8 == 2 || numOf7 == 2 || numOf6 == 2 || numOf5 == 2 || numOf4 == 2 || numOf4 == 2 || numOf3 == 2 || numOf2 == 2)) {
             return "full";
         }
@@ -58,10 +62,10 @@ public class GroupHand {
         else if (numOfAce == 3 || numOfKing == 3 || numOfQueen == 3 || numOfJack == 3 || numOf10 == 3 || numOf9 == 3 || numOf8 == 3 || numOf7 == 3 || numOf6 == 3 || numOf5 == 3 || numOf4 == 3 || numOf3 == 3 || numOf2 == 3){
             return "three";
         }
-        else if (numOfAce == 2 || numOfKing == 2 || numOfQueen == 2 || numOfJack == 2 || numOf10 == 2 || numOf9 == 2 || numOf8 == 2 || numOf7 == 2 || numOf6 == 2 || numOf5 == 2 || numOf4 == 2 || numOf3 == 2 || numOf2 == 2){
+        else if (ifTwoPair) {
             return "two";
         }
-        else if (numOfAce == 1 || numOfKing == 1 || numOfQueen == 1 || numOfJack == 1 || numOf10 == 1 || numOf9 == 1 || numOf8 == 1 || numOf7 == 1 || numOf6 == 1 || numOf5 == 1 || numOf4 == 1 || numOf3 == 1 || numOf2 == 1){
+        else if (ifOnePair) {
             return "one";
         }
         else {
