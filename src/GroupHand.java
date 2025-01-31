@@ -1,5 +1,5 @@
 public class GroupHand {
-
+    public int bidValue = 0;
     public String[] cards;
 
     public GroupHand (String playerHand){
@@ -13,6 +13,7 @@ public class GroupHand {
         cards[3] = playerHand.substring(0, playerHand.indexOf(","));
         playerHand = playerHand.substring(playerHand.indexOf(",") + 1);
         cards[4] = playerHand.substring(0, playerHand.indexOf("|"));
+        bidValue = Integer.parseInt(playerHand.substring(playerHand.indexOf("|") + 1));
     }
 
     public int countCard(String target) {
