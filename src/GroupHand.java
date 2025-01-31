@@ -1,6 +1,6 @@
 public class GroupHand {
 
-    private String[] cards;
+    public String[] cards;
 
     public GroupHand (String playerHand){
         cards = new String[5];
@@ -13,7 +13,6 @@ public class GroupHand {
         cards[3] = playerHand.substring(0, playerHand.indexOf(","));
         playerHand = playerHand.substring(playerHand.indexOf(",") + 1);
         cards[4] = playerHand.substring(0, playerHand.indexOf("|"));
-
     }
 
     public int countCard(String target) {
