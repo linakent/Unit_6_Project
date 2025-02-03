@@ -152,40 +152,69 @@ public class PartTwo {
             orderedBidArray[x] = bidArray[index];
             handTypeCopy[index] = 100;
         }
-        //System.out.println("orderedBidArray1 = " + Arrays.toString(orderedBidArray));
+        System.out.println("orderedBidArray1 = " + Arrays.toString(orderedBidArray));
+    }
+
+    public int findRepeatingType(int[] cardTypes) {
+        for (int x = 0; x < cardTypes.length; x ++) {
+            if (cardTypes[x] == cardTypes[x + 1]) {
+                return cardTypes[x];
+            }
+        }
+        return -1;
+    }
+
+    public int countCardTypes(int[] cardTypes, int indexOfTarget) {
+        int counter = 0;
+        for (int x = 0; x < cardTypes.length; x ++) {
+            if (cardTypes[indexOfTarget] == cardTypes[x]) {
+                counter ++;
+            }
+        }
+        return counter;
+    }
+
+    public int[] getCardArray1(int[][] orderedHands, int count, int indexNum, int cardNum) {
+        int[] cardArray = new int[count];
+        for (int x = 0; x < count; x ++) {
+            cardArray[x] = orderedHands[indexNum][cardNum];
+        }
+        return cardArray;
+    }
+
+    public int[] getCards(int[][] cards) {
+
+    }
+
+    public int[] getCardArray2(int[][] orderedHands, int count, int indexNum) {
+        boolean isEqual = true;
+        int x = 0;
+        int[] cardArray = new int[count];
+        while (isEqual) {
+            cardArray = getCardArray1(orderedHands, count, indexNum, x);
+
+        }
+
     }
 
     public void orderByCard() {
-        //System.out.println("here! orderedHandsA = " + Arrays.deepToString(orderedHandsA));
+        System.out.println("here! orderedHandsA = " + Arrays.deepToString(orderedHandsA));
         for (int x = 0; x < orderedHandsA.length - 1; x ++) {
-            //System.out.println("Checking if " + orderedHandTypes[x] + " == " + orderedHandTypes[x + 1]);
+            System.out.println("Checking if " + orderedHandTypes[x] + " == " + orderedHandTypes[x + 1]);
             if (orderedHandTypes[x] == orderedHandTypes[x + 1]) {
-                for (int y = 0; y < 5; y++) {
-                    int temp;
-                    int[] temp2;
-                    if ((orderedHandsA[x][y] > orderedHandsA[x + 1][y])) {
-                        //System.out.println("Compared if " + orderedHandsA[x][y] + " < " + orderedHandsA[x + 1][y]);
-                        //System.out.println("orderedBidArray[x] = " + orderedBidArray[x]);
-                        //System.out.println("orderedBidArray[x + 1] = " + orderedBidArray[x + 1]);
-                        temp = orderedBidArray[x];
-                        //System.out.println("temp = " + temp);
-                        orderedBidArray[x] = orderedBidArray[x + 1];
-                        //System.out.println("orderedbidArray = " + orderedBidArray[x + 1]);
-                        orderedBidArray[x + 1] = temp;
-                        //System.out.println("orderedBidArray[x + 1] = " + temp);
-
-                        temp2 = orderedHandsA[x];
-                        orderedHandsA[x] = orderedHandsA[x + 1];
-                        orderedHandsA[x + 1] = temp2;
-                        y = 5;
-                    }
+                int count = countCardTypes(orderedHandTypes, x);
+                int[] cardArray = new int[count];
+                for (int y = 0; y < count; y ++) {
+                    cardArray[y] = orderedHandsA[]
                 }
+
             }
-            orderedHandsB[x] = orderedHandsA[x];
         }
+        orderedHandsB[x] = orderedHandsA[x];
+
         orderedHandsB[orderedHandsB.length - 1] = orderedHandsA[orderedHandsA.length - 1];
-        //System.out.println("OrderedHandsA = " + Arrays.deepToString(orderedHandsA));
-        //System.out.println("OrderedHandsB = " + Arrays.deepToString(orderedHandsB));
+        System.out.println("OrderedHandsA = " + Arrays.deepToString(orderedHandsA));
+        System.out.println("OrderedHandsB = " + Arrays.deepToString(orderedHandsB));
     }
 
     public int findBidVal() {
@@ -193,17 +222,17 @@ public class PartTwo {
         orderByCard();
         int total = 0;
 
-        //System.out.print("(");
+        System.out.print("(");
         for (int x = 1; x <= orderedBidArray.length; x ++) {
-            //System.out.print(orderedBidArray[x - 1] + " * " + x + " + ");
+            System.out.print(orderedBidArray[x - 1] + " * " + x + " + ");
             total += orderedBidArray[x - 1] * x;
         }
-        //System.out.println(")");
+        System.out.println(")");
         return total;
     }
 
     public String toString() {
-        return "Total Bid Value: " + findBidVal();
+        return "Total Bid Value: " ;
     }
 
 
