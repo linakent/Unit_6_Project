@@ -3,7 +3,6 @@
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
-import java.util.Arrays;
 
 public class Main {
     public static void main(String[] args) {
@@ -22,8 +21,10 @@ public class Main {
 
             // a String array where every item in the array is a line from the file
             String[] fileArray = fileData.split("\n");
-            partOne.getPartOneAnswer(fileArray);
+            int [] handsTypeArray = partOne.countingHands(fileArray);
             System.out.println(partOne);
+            PartTwo partTwo = new PartTwo(fileArray, handsTypeArray);
+            System.out.println(partTwo);
 
         }
         catch (FileNotFoundException fe) {

@@ -18,32 +18,42 @@ public class PartOne {
         highCard = 0;
     }
 
-    public void getPartOneAnswer(String[] inputArray) {
+    public int[] countingHands(String[] inputArray) {
+        int[] handTypeArray = new int[inputArray.length];
         for (int x = 0; x < inputArray.length; x ++) {
             GroupHand hand = new GroupHand(inputArray[x]);
             String handType = hand.assignHand();
+            //System.out.println("Hand #" + x + " = " + handType);
             if (handType.equals("five")) {
                 fiveOfAKind ++;
+                handTypeArray[x] = 7;
             }
             else if (handType.equals("four")) {
                 fourOfAKind ++;
+                handTypeArray[x] = 6;
             }
             else if (handType.equals("full")) {
                 fullHouse ++;
+                handTypeArray[x] = 5;
             }
             else if (handType.equals("three")) {
                 threeOfAKind ++;
+                handTypeArray[x] = 4;
             }
             else if (handType.equals("two")) {
                 twoPair++;
+                handTypeArray[x] = 3;
             }
             else if (handType.equals("one")) {
                 onePair ++;
+                handTypeArray[x] = 2;
             }
             else if (handType.equals("high")) {
                 highCard ++;
+                handTypeArray[x] = 1;
             }
         }
+        return handTypeArray;
     }
 
     public String toString() {

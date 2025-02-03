@@ -50,7 +50,7 @@ public class GroupHand {
             ifTwoPair = string.indexOf("2") != -1;
         }
 
-        if ((numOfAce == 3 || numOfKing == 3 || numOfQueen == 3 || numOfJack == 3 || numOf10 == 3 || numOf9 == 3 || numOf8 == 3 || numOf7 == 3 || numOf6 == 3 || numOf5 == 3 || numOf4 == 3 || numOf4 == 3 || numOf3 == 3 || numOf2 == 3) &&(numOfAce == 2 || numOfKing == 2 || numOfQueen == 2 || numOfJack == 2 || numOf10 == 2 || numOf9 == 2 || numOf8 == 2 || numOf7 == 2 || numOf6 == 2 || numOf5 == 2 || numOf4 == 2 || numOf4 == 2 || numOf3 == 2 || numOf2 == 2)) {
+        if ((numOfAce == 3 || numOfKing == 3 || numOfQueen == 3 || numOfJack == 3 || numOf10 == 3 || numOf9 == 3 || numOf8 == 3 || numOf7 == 3 || numOf6 == 3 || numOf5 == 3 || numOf4 == 3 || numOf3 == 3 || numOf2 == 3) && (numOfAce == 2 || numOfKing == 2 || numOfQueen == 2 || numOfJack == 2 || numOf10 == 2 || numOf9 == 2 || numOf8 == 2 || numOf7 == 2 || numOf6 == 2 || numOf5 == 2 ||  numOf4 == 2 || numOf3 == 2 || numOf2 == 2)) {
             return "full";
         }
         else if (numOfAce == 5 || numOfKing == 5 || numOfQueen == 5 || numOfJack == 5 || numOf10 == 5 || numOf9 == 5 || numOf8 == 5 || numOf7 == 5 || numOf6 == 5 || numOf5 == 5 || numOf4 == 5 || numOf3 == 5 || numOf2 == 5){
