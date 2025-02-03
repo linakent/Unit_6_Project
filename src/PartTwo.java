@@ -12,6 +12,8 @@ public class PartTwo {
     private int[][] orderedHandsA;
     private int[][] orderedHandsB;
 
+    public static boolean jackIsWild;
+
     public PartTwo(String[] inputArray, int[] handType) {
         bidArray = new int[inputArray.length];
         orderedBidArray = new int[bidArray.length];
@@ -33,49 +35,97 @@ public class PartTwo {
         }
         orderedHandsB = new int[orderedHandsA.length][5];
         //System.out.println("bidArray = " + Arrays.toString(bidArray));
+        jackIsWild == false;
     }
 
     public int[] translateCardArray(String[] cardsArray) {
         int[] temp = new int[cardsArray.length];
         for (int x = 0; x < temp.length; x ++) {
-            if (cardsArray[x].equals("Ace")) {
-                temp[x] = 13;
+
+            if (jackIsWild == true) {
+
+                if (cardsArray[x].equals("Ace")) {
+                    temp[x] = 13;
+                }
+                if (cardsArray[x].equals("King")) {
+                    temp[x] = 12;
+                }
+                if (cardsArray[x].equals("Queen")) {
+                    temp[x] = 11;
+                }
+                if (cardsArray[x].equals("10")) {
+                    temp[x] = 10;
+                }
+                if (cardsArray[x].equals("9")) {
+                    temp[x] = 9;
+                }
+                if (cardsArray[x].equals("8")) {
+                    temp[x] = 8;
+                }
+                if (cardsArray[x].equals("7")) {
+                    temp[x] = 7;
+                }
+                if (cardsArray[x].equals("6")) {
+                    temp[x] = 6;
+                }
+                if (cardsArray[x].equals(("5"))) {
+                    temp[x] = 5;
+                }
+                if (cardsArray[x].equals("4")) {
+                    temp[x] = 4;
+                }
+                if (cardsArray[x].equals("3")) {
+                    temp[x] = 3;
+                }
+                if (cardsArray[x].equals("2")) {
+                    temp[x] = 2;
+                }
+                if (cardsArray[x].equals("Jack")) {
+                    temp[x] = 1;
+                }
+
             }
-            if (cardsArray[x].equals("King")) {
-                temp[x] = 12;
-            }
-            if (cardsArray[x].equals("Queen")) {
-                temp[x] = 11;
-            }
-            if (cardsArray[x].equals("Jack")) {
-                temp[x] = 10;
-            }
-            if (cardsArray[x].equals("10")) {
-                temp[x] = 9;
-            }
-            if (cardsArray[x].equals("9")) {
-                temp[x] = 8;
-            }
-            if (cardsArray[x].equals("8")) {
-                temp[x] = 7;
-            }
-            if (cardsArray[x].equals("7")) {
-                temp[x] = 6;
-            }
-            if (cardsArray[x].equals("6")) {
-                temp[x] = 5;
-            }
-            if (cardsArray[x].equals(("5"))) {
-                temp[x] = 4;
-            }
-            if (cardsArray[x].equals("4")) {
-                temp[x] = 3;
-            }
-            if (cardsArray[x].equals("3")) {
-                temp[x] = 2;
-            }
-            if (cardsArray[x].equals("2")) {
-                temp[x] = 1;
+
+            else {
+                if (cardsArray[x].equals("Ace")) {
+                    temp[x] = 13;
+                }
+                if (cardsArray[x].equals("King")) {
+                    temp[x] = 12;
+                }
+                if (cardsArray[x].equals("Queen")) {
+                    temp[x] = 11;
+                }
+                if (cardsArray[x].equals("Jack")) {
+                    temp[x] = 10;
+                }
+                if (cardsArray[x].equals("10")) {
+                    temp[x] = 9;
+                }
+                if (cardsArray[x].equals("9")) {
+                    temp[x] = 8;
+                }
+                if (cardsArray[x].equals("8")) {
+                    temp[x] = 7;
+                }
+                if (cardsArray[x].equals("7")) {
+                    temp[x] = 6;
+                }
+                if (cardsArray[x].equals("6")) {
+                    temp[x] = 5;
+                }
+                if (cardsArray[x].equals(("5"))) {
+                    temp[x] = 4;
+                }
+                if (cardsArray[x].equals("4")) {
+                    temp[x] = 3;
+                }
+                if (cardsArray[x].equals("3")) {
+                    temp[x] = 2;
+                }
+                if (cardsArray[x].equals("2")) {
+                    temp[x] = 1;
+                }
             }
         }
         return temp;
