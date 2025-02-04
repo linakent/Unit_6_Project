@@ -25,7 +25,6 @@ public class Main {
             System.out.println(partOne);
             PartTwo partTwo = new PartTwo(fileArray, handsTypeArray);
             System.out.println(partTwo);
-
         }
         catch (FileNotFoundException fe) {
             System.out.println("File was not found");
