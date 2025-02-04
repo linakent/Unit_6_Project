@@ -169,6 +169,7 @@ public class PartTwo {
     }
 
     public void orderByCard() {
+        System.out.println("OrderedBidArray = " + Arrays.toString(orderedBidArray));
         System.out.println("here! orderedHandsA = " + Arrays.deepToString(orderedHandsA));
         for (int x = 0; x < orderedHandsA.length - 1; x ++) {
             System.out.println("Checking if " + orderedHandTypes[x] + " == " + orderedHandTypes[x + 1]);
@@ -176,24 +177,33 @@ public class PartTwo {
                 for (int y = 0; y < 5; y++) {
                     int temp;
                     int[] temp2;
-                    if ((orderedHandsA[x][y] > orderedHandsA[x + 1][y])) {
-                        System.out.println("Compared if " + orderedHandsA[x][y] + " > " + orderedHandsA[x + 1][y]);
-                        System.out.println("orderedBidArray[x] = " + orderedBidArray[x]);
-                        System.out.println("orderedBidArray[x + 1] = " + orderedBidArray[x + 1]);
-                        temp = orderedBidArray[x];
-                        System.out.println("temp = " + temp);
-                        orderedBidArray[x] = orderedBidArray[x + 1];
-                        System.out.println("orderedbidArray = " + orderedBidArray[x + 1]);
-                        orderedBidArray[x + 1] = temp;
-                        System.out.println("orderedBidArray[x + 1] = " + temp);
+                    if (orderedHandsA[x][y] != orderedHandsA[x + 1][y]) {
+                        if ((orderedHandsA[x][y] > orderedHandsA[x + 1][y])) {
+                            System.out.println("Com```pared if " + orderedHandsA[x][y] + " > " + orderedHandsA[x + 1][y]);
+                            System.out.println("orderedBidArray[x] = " + orderedBidArray[x]);
+                            System.out.println("orderedBidArray[x + 1] = " + orderedBidArray[x + 1]);
+                            temp = orderedBidArray[x];
+                            System.out.println("temp = " + temp);
+                            orderedBidArray[x] = orderedBidArray[x + 1];
+                            System.out.println("orderedbidArray[x] = " + orderedBidArray[x]);
+                            orderedBidArray[x + 1] = temp;
+                            System.out.println("orderedBidArray[x + 1] = " + orderedBidArray[x + 1]);
 
-                        temp2 = orderedHandsA[x];
-                        orderedHandsA[x] = orderedHandsA[x + 1];
-                        orderedHandsA[x + 1] = temp2;
+                            temp2 = orderedHandsA[x];
+                            orderedHandsA[x] = orderedHandsA[x + 1];
+                            orderedHandsA[x + 1] = temp2;
+
+                            System.out.println();
+                            System.out.println("OrderedBidArray = " + Arrays.toString(orderedBidArray));
+                            System.out.println("OrderedHandsA = " + Arrays.deepToString(orderedHandsA));
+                            System.out.println();
+                            y = 5;
+                        }
                         if (!ifHaveRepeatedElement(orderedHandTypes)) {
                             y = 5;
                         }
                     }
+
                 }
             }
             orderedHandsB[x] = orderedHandsA[x];
