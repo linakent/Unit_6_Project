@@ -11,6 +11,7 @@ public class PartTwo {
     private int[][] hands;
     private int[][] orderedHandsA;
     private int[][] orderedHandsB;
+    private PartOne partOne;
 
     public static boolean jackIsWild;
 
@@ -36,6 +37,8 @@ public class PartTwo {
         orderedHandsB = new int[orderedHandsA.length][5];
         //System.out.println("bidArray = " + Arrays.toString(bidArray));
         jackIsWild = false;
+        partOne = new PartOne();
+        partOne.countingHands(inputArray);
     }
 
     public int[] translateCardArray(String[] cardsArray) {
@@ -169,6 +172,16 @@ public class PartTwo {
     }
 
     public void orderByCard() {
+
+        int[] cardsOfFive = new int[partOne.fiveOfAKind]
+
+        if (partOne.fiveOfAKind > 1) {
+            for (int x = 0; x < partOne.fiveOfAKind; x ++) {
+
+            }
+        }
+
+
         System.out.println("OrderedBidArray = " + Arrays.toString(orderedBidArray));
         System.out.println("here! orderedHandsA = " + Arrays.deepToString(orderedHandsA));
         for (int x = 0; x < orderedHandsA.length - 1; x ++) {
@@ -177,6 +190,9 @@ public class PartTwo {
                 for (int y = 0; y < 5; y++) {
                     int temp;
                     int[] temp2;
+
+
+
                     if (orderedHandsA[x][y] != orderedHandsA[x + 1][y]) {
                         if ((orderedHandsA[x][y] > orderedHandsA[x + 1][y])) {
                             System.out.println("Com```pared if " + orderedHandsA[x][y] + " > " + orderedHandsA[x + 1][y]);

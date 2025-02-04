@@ -1,12 +1,11 @@
 public class PartOne {
 
-    private int fiveOfAKind;
-    private int fourOfAKind;
-    private int fullHouse;
-    private int threeOfAKind;
-    private int twoPair;
-    private int onePair;
-    private int highCard;
+    public int fiveOfAKind;    public int fourOfAKind;
+    public int fullHouse;
+    public int threeOfAKind;
+    public int twoPair;
+    public int onePair;
+    public int highCard;
 
     public PartOne() {
         fiveOfAKind = 0;
