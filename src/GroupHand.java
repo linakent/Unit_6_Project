@@ -15,8 +15,8 @@ public class GroupHand {
         playerHand = playerHand.substring(playerHand.indexOf(",") + 1);
         cards[4] = playerHand.substring(0, playerHand.indexOf("|"));
         bidValue = Integer.parseInt(playerHand.substring(playerHand.indexOf("|") + 1));
-        //int[] bdjhgjhdas = {0, 1};
-        //partTwo = new PartTwo(cards, bdjhgjhdas);
+        int[] bdjhgjhdas = {0, 1};
+        partTwo = new PartTwo(cards, bdjhgjhdas);
     }
 
     public int countCard(String target) {
