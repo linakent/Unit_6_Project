@@ -1,6 +1,7 @@
 public class PartOne {
 
-    public int fiveOfAKind;    public int fourOfAKind;
+    public int fiveOfAKind;
+    public int fourOfAKind;
     public int fullHouse;
     public int threeOfAKind;
     public int twoPair;
