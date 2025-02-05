@@ -18,6 +18,28 @@ public class PartOne {
         highCard = 0;
     }
 
+    public int getFiveOfAKind (){
+        return fiveOfAKind;
+    }
+    public int getFourOfAKind (){
+        return fourOfAKind;
+    }
+    public int getFullHouse (){
+        return fullHouse;
+    }
+    public int getThreeOfAKind (){
+        return threeOfAKind;
+    }
+    public int getTwoPair (){
+        return twoPair;
+    }
+    public int getOnePair (){
+        return onePair;
+    }
+    public int getHighCard (){
+        return highCard;
+    }
+
     public int[] countingHands(String[] inputArray) {
         int[] handTypeArray = new int[inputArray.length];
         for (int x = 0; x < inputArray.length; x ++) {
