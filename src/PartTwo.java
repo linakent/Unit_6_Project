@@ -184,25 +184,56 @@ public class PartTwo {
         handType[hand2] = tempType;
     }
 
-    public int[][] appendArrays(int[][] handTypeArray, int[] newHand) {
-        int[][] origArray = new int[handTypeArray.length][5];
-        int[][] newArray = new int[handTypeArray.length][5];
-//        if (origArray[0].length == 0) {
-//            origArray[0] = newHand;
-//        }
-//        else {
-//            for (int x = 0; x < origArray.length - 1; x ++) {
-//                for (int y = 0; y < 5; y++) {
-//                    if (origArray[x][y] != newHand[y]) {
-//                        if (origArray[x][y] > newHand[y]) {
-//                            swap(origArray, x, y);
-//                        }
-//                        y = 5;
-//                    }
-//                }
-//            }
-//        }
-        return origArray;
+    public int getNumOfHands(int handType) {
+        if (handType == 7) {
+            return partOne.getFiveOfAKind();
+        }
+        if (handType == 6) {
+            return partOne.getFourOfAKind();
+        }
+        if (handType == 5) {
+            return partOne.getFullHouse();
+        }
+        if (handType == 4) {
+            return partOne.getThreeOfAKind();
+        }
+        if (handType == 3) {
+            return partOne.getTwoPair();
+        }
+        if (handType == 2) {
+            return partOne.getOnePair();
+        }
+        if (handType == 1) {
+            return partOne.getHighCard();
+        }
+        return -1;
+    }
+
+    public int[][] appendArrays(int[][] array, int handType) {
+
+        int numOfHands = getNumOfHands(handType);
+        int[][] appendedArrays = new int[numOfHands][5];
+        int indexCount = 0;
+
+        for (int x = 0; x < orderedHandTypes.length; x ++) {
+            if (orderedHandTypes[x] == handType) {
+                appendedArrays[indexCount] = orderedHandsA[x];
+                indexCount ++;
+            }
+        }
+
+        return appendedArrays;
+    }
+
+    public int[][] orderedArray(int[][] array) {
+
+        int[][] orderedArray = new int[array.length][5];
+
+        for (int x = 0; x < orderedArray.length; x ++) {
+
+        }
+
+        return orderedArray;
     }
 
     public void orderBidArrayByCards() {
@@ -214,7 +245,18 @@ public class PartTwo {
         int[][] one = new int[partOne.getOnePair()][5];
         int[][] high = new int[partOne.getHighCard()][5];
 
-        for (int x = 0; x < )
+        five = appendArrays(five, 7);
+        four = appendArrays(four, 6);
+        full = appendArrays(full, 5);
+        three = appendArrays(three, 4);
+        two = appendArrays(two, 3);
+        one = appendArrays(one, 2);
+        high = appendArrays(high, 1);
+
+
+
+
+
 
     }
 
