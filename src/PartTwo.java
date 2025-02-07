@@ -159,41 +159,74 @@ public class PartTwo {
         return -1;
     }
 
+    public void orderByHandType() {
+        int[] handTypeCopy = new int[handType.length];
+        for (int x = 0; x < handType.length; x ++) {
+            handTypeCopy[x] = handType[x];
+        }
+        int index;
+        for (int x = 0; x < handType.length; x ++) {
+            index = findIndexOf(orderedHandTypes[x], handTypeCopy);
+            orderedHandsA[x] = hands[index];
+            orderedBidArray[x] = bidArray[index];
+            handTypeCopy[index] = 100;
+        }
+        //System.out.println("orderedBidArray1 = " + Arrays.toString(orderedBidArray));
+    }
+
+    public int findIndexOf(int target, int[] array) {
+        for (int x = 0; x < array.length; x ++) {
+            if (array[x] == target) {
+                return x;
+            }
+        }
+        return -1;
+    }
+
     public int[][] appendArrays(int handType) {
 
         int numOfHands = getNumOfHands(handType);
         int[][] appendedArrays = new int[numOfHands][6];
         int indexCount = 0;
-
-        for (int x = 0; x < orderedHandTypes.length; x ++) {
+        int x = 0;
+       while (indexCount != numOfHands) {
             if (orderedHandTypes[x] == handType) {
-                appendedArrays[indexCount] = orderedHandsA[x];
+                for (int y = 0; y < 5; y ++) {
+                    appendedArrays[indexCount][y] = orderedHandsA[x][y];
+                }
                 appendedArrays[indexCount][5] = orderedBidArray[x];
                 indexCount ++;
+                System.out.println("AppenedArray = " + Arrays.deepToString(appendedArrays));
             }
+            x ++;
         }
+
         return appendedArrays;
     }
 
     public int[][] orderedArray(int[][] array) {
 
-        int[][] orderedArray = new int[array.length][6];
         ArrayList<int[]> sorted = new ArrayList<>();
 
         for (int x = 0; x < array.length; x ++) {
             if (sorted.size() == 0) {
                 sorted.add(array[x]);
+                System.out.println(sorted);
             }
             else {
                 for (int y = 0; y < 5; y ++) {
-                    int[] temp = sorted.get(0);
-                    if (array[x][y] < temp[y]){
+                    int[] firstIndex = sorted.get(0);
+                    int[] secondIndex = sorted.get(sorted.size() - 1);
+                    if (array[x][y] < firstIndex[y]){
+                        System.out.println("if " + array[x][y] + " < " + firstIndex[y]);
                         sorted.add(0, array[x]);
+                        System.out.println(sorted);
                         y = 5;
                     }
-                    temp = sorted.get(sorted.size() - 1);
-                    if (temp[y] < array[x][y]) {
+                    else if ((array[x][y] > secondIndex[y]) && (!isArrayEmpty(array[x]))) {
+                        System.out.println("else if " + array[x][y] + " > " + secondIndex[y] + " && " + !isArrayEmpty(array[x]));
                         sorted.add(array[x]);
+                        System.out.println(sorted);
                         y = 5;
                     }
                     for (int z = 0; z < sorted.size() - 1; z ++) {
@@ -202,34 +235,62 @@ public class PartTwo {
                         if ((array[x][y] < current[y]) && (array[x][y] > next[y])) {
                             sorted.add(z + 1, array[x]);
                             y = 5;
+                            z = sorted.size();
                         }
                     }
                 }
             }
         }
-
-        for (int i = 0; i < sorted.size(); i ++) {
+        int[][] orderedArray = new int[sorted.size()][6];
+        for (int i = 0; i != sorted.size(); i ++) {
             orderedArray[i] = sorted.get(i);
         }
         return orderedArray;
     }
 
+    public boolean isArrayEmpty(int[][] array) {
+        int count = 0;
+        for (int x = 0; x < array.length; x ++) {
+            if (array[x][0] == 0) {
+               count ++;
+            }
+        }
+        return count == array.length;
+    }
+
+    public boolean isArrayEmpty(int[] array) {
+        int count = 0;
+        for (int x = 0; x < array.length; x ++) {
+            if (array[x] == 0) {
+                count ++;
+            }
+        }
+        return count == array.length;
+    }
+
     public int[][] orderBidArrayByCards() {
-        int[][] five = new int[partOne.getFiveOfAKind()][6];
-        int[][] four = new int[partOne.getFourOfAKind()][6];
-        int[][] full = new int[partOne.getFullHouse()][6];
-        int[][] three = new int[partOne.getThreeOfAKind()][6];
-        int[][] two = new int[partOne.getTwoPair()][6];
-        int[][] one = new int[partOne.getOnePair()][6];
-        int[][] high = new int[partOne.getHighCard()][6];
+        int[][] five;
+        int[][] four;
+        int[][] full;
+        int[][] three;
+        int[][] two;
+        int[][] one;
+        int[][] high;
 
         five = appendArrays(7);
+        System.out.println("five = " + Arrays.deepToString(five));
         four = appendArrays(6);
+        System.out.println("four = " + Arrays.deepToString(four));
         full = appendArrays(5);
+        System.out.println("full = " + Arrays.deepToString(full));
         three = appendArrays(4);
+        System.out.println("three = " + Arrays.deepToString(three));
         two = appendArrays(3);
+        System.out.println("two = " + Arrays.deepToString(two));
         one = appendArrays(2);
+        System.out.println("one = " + Arrays.deepToString(one));
         high = appendArrays(1);
+        System.out.println("high = " + Arrays.deepToString(high));
 
         five = orderedArray(five);
         four = orderedArray(four);
@@ -241,56 +302,70 @@ public class PartTwo {
 
         int[][] finalArray = new int[bidArray.length][6];
         int indexNum = 0;
-        for (int a = indexNum; a < indexNum + high.length; a ++) {
-            finalArray[a] = high[a];
+        if (isArrayEmpty(high)) {
+            for (int a = indexNum; a < indexNum + high.length; a ++) {
+                finalArray[a] = high[a];
+            }
+            indexNum += high.length - 1;
         }
-        indexNum += high.length - 1;
 
-        for (int b = indexNum; b < indexNum + one.length; b ++) {
-            finalArray[b] = one[b];
+        if (isArrayEmpty(one)) {
+            for (int b = indexNum; b < indexNum + one.length; b ++) {
+                finalArray[b] = one[b];
+            }
+            indexNum += one.length - 1;
         }
-        indexNum += one.length - 1;
 
-        for (int c = indexNum; c < indexNum + two.length; c ++) {
-            finalArray[c] = two[c];
+        if (isArrayEmpty(two)) {
+            for (int c = indexNum; c < indexNum + two.length; c ++) {
+                finalArray[c] = two[c];
+            }
+            indexNum += two.length - 1;
         }
-        indexNum += two.length - 1;
 
-        for (int d = indexNum; d < indexNum + three.length; d ++) {
-            finalArray[d] = three[d];
+        if (isArrayEmpty(three)) {
+            for (int d = indexNum; d < indexNum + three.length; d ++) {
+                finalArray[d] = three[d];
+            }
+            indexNum += three.length - 1;
         }
-        indexNum += three.length - 1;
 
-        for (int e = indexNum; e < indexNum + full.length; e ++) {
-            finalArray[e] = full[e];
+        if (isArrayEmpty(full)) {
+            for (int e = indexNum; e < indexNum + full.length; e ++) {
+                finalArray[e] = full[e];
+            }
+            indexNum += full.length - 1;
         }
-        indexNum += full.length - 1;
 
-        for (int f = indexNum; f < indexNum + four.length; f ++) {
-            finalArray[f] = four[f];
+        if (isArrayEmpty(four)) {
+            for (int f = indexNum; f < indexNum + four.length; f ++) {
+                finalArray[f] = four[f];
+            }
+            indexNum += four.length - 1;
         }
-        indexNum += four.length - 1;
 
-        for (int g = indexNum; g < indexNum + five.length; g ++) {
-            finalArray[g] = five[g];
+        if (isArrayEmpty(five)) {
+            for (int g = indexNum; g < indexNum + five.length; g ++) {
+                finalArray[g] = five[g];
+            }
         }
 
         return finalArray;
     }
 
-    public int findBidVal(int[][] finalArray) {
-        int total = 0;
+    public int findBidVal() {
+        orderByHandType();
+        int[][] orderedArray = orderBidArrayByCards();
+        int totalBid = 0;
 
-        for (int x = 0; x < finalArray.length; x ++) {
-            total += finalArray[x][5] * (x + 1);
+        for (int x = 0; x < orderedArray.length; x ++) {
+            totalBid += orderedArray[x][5] * (x + 1);
         }
-
-        return total;
+        return totalBid;
     }
 
     public String toString() {
-        return "Total Bid Value: " + findBidVal(orderBidArrayByCards());
+        return "Total Bid Value: " + findBidVal();
     }
-
 
 }
