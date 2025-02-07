@@ -1,3 +1,4 @@
+import java.util.ArrayList;
 import java.util.Arrays;
 public class PartTwo {
 
@@ -133,57 +134,6 @@ public class PartTwo {
         return temp;
     }
 
-    public int findIndexOf(int target, int[] array) {
-        for (int x = 0; x < array.length; x ++) {
-            if (array[x] == target) {
-                return x;
-            }
-        }
-        return -1;
-    }
-
-    public void orderByHandType() {
-        int[] handTypeCopy = new int[handType.length];
-        for (int x = 0; x < handType.length; x ++) {
-            handTypeCopy[x] = handType[x];
-        }
-        int index;
-        for (int x = 0; x < handType.length; x ++) {
-            index = findIndexOf(orderedHandTypes[x], handTypeCopy);
-            orderedHandsA[x] = hands[index];
-            orderedBidArray[x] = bidArray[index];
-            handTypeCopy[index] = 100;
-        }
-        System.out.println("orderedBidArray1 = " + Arrays.toString(orderedBidArray));
-    }
-
-    public boolean ifHaveRepeatedElement(int[] array) {
-        for (int x = 0; x < array.length; x ++) {
-            for (int y = 0; y < array.length; y ++) {
-                if (array[x] == array[y]) {
-                    if (x != y) {
-                        return true;
-                    }
-                }
-            }
-        }
-        return false;
-    }
-
-    private void swap(int[][] hand, int hand1, int hand2) {
-        int[] tempHand = hands[hand1];
-        hands[hand1] = hands[hand2];
-        hands[hand2] = tempHand;
-
-        int tempBid = orderedBidArray[hand1];
-        orderedBidArray[hand1] = orderedBidArray[hand2];
-        orderedBidArray[hand2] = tempBid;
-
-        int tempType = handType[hand1];
-        handType[hand1] = handType[hand2];
-        handType[hand2] = tempType;
-    }
-
     public int getNumOfHands(int handType) {
         if (handType == 7) {
             return partOne.getFiveOfAKind();
@@ -209,77 +159,137 @@ public class PartTwo {
         return -1;
     }
 
-    public int[][] appendArrays(int[][] array, int handType) {
+    public int[][] appendArrays(int handType) {
 
         int numOfHands = getNumOfHands(handType);
-        int[][] appendedArrays = new int[numOfHands][5];
+        int[][] appendedArrays = new int[numOfHands][6];
         int indexCount = 0;
 
         for (int x = 0; x < orderedHandTypes.length; x ++) {
             if (orderedHandTypes[x] == handType) {
                 appendedArrays[indexCount] = orderedHandsA[x];
+                appendedArrays[indexCount][5] = orderedBidArray[x];
                 indexCount ++;
             }
         }
-
         return appendedArrays;
     }
 
     public int[][] orderedArray(int[][] array) {
 
-        int[][] orderedArray = new int[array.length][5];
+        int[][] orderedArray = new int[array.length][6];
+        ArrayList<int[]> sorted = new ArrayList<>();
 
-        for (int x = 0; x < orderedArray.length; x ++) {
-
+        for (int x = 0; x < array.length; x ++) {
+            if (sorted.size() == 0) {
+                sorted.add(array[x]);
+            }
+            else {
+                for (int y = 0; y < 5; y ++) {
+                    int[] temp = sorted.get(0);
+                    if (array[x][y] < temp[y]){
+                        sorted.add(0, array[x]);
+                        y = 5;
+                    }
+                    temp = sorted.get(sorted.size() - 1);
+                    if (temp[y] < array[x][y]) {
+                        sorted.add(array[x]);
+                        y = 5;
+                    }
+                    for (int z = 0; z < sorted.size() - 1; z ++) {
+                        int[] current = sorted.get(z);
+                        int[] next = sorted.get(z + 1);
+                        if ((array[x][y] < current[y]) && (array[x][y] > next[y])) {
+                            sorted.add(z + 1, array[x]);
+                            y = 5;
+                        }
+                    }
+                }
+            }
         }
 
+        for (int i = 0; i < sorted.size(); i ++) {
+            orderedArray[i] = sorted.get(i);
+        }
         return orderedArray;
     }
 
-    public void orderBidArrayByCards() {
-        int[][] five = new int[partOne.getFiveOfAKind()][5];
-        int[][] four = new int[partOne.getFourOfAKind()][5];
-        int[][] full = new int[partOne.getFullHouse()][5];
-        int[][] three = new int[partOne.getThreeOfAKind()][5];
-        int[][] two = new int[partOne.getTwoPair()][5];
-        int[][] one = new int[partOne.getOnePair()][5];
-        int[][] high = new int[partOne.getHighCard()][5];
+    public int[][] orderBidArrayByCards() {
+        int[][] five = new int[partOne.getFiveOfAKind()][6];
+        int[][] four = new int[partOne.getFourOfAKind()][6];
+        int[][] full = new int[partOne.getFullHouse()][6];
+        int[][] three = new int[partOne.getThreeOfAKind()][6];
+        int[][] two = new int[partOne.getTwoPair()][6];
+        int[][] one = new int[partOne.getOnePair()][6];
+        int[][] high = new int[partOne.getHighCard()][6];
 
-        five = appendArrays(five, 7);
-        four = appendArrays(four, 6);
-        full = appendArrays(full, 5);
-        three = appendArrays(three, 4);
-        two = appendArrays(two, 3);
-        one = appendArrays(one, 2);
-        high = appendArrays(high, 1);
+        five = appendArrays(7);
+        four = appendArrays(6);
+        full = appendArrays(5);
+        three = appendArrays(4);
+        two = appendArrays(3);
+        one = appendArrays(2);
+        high = appendArrays(1);
 
+        five = orderedArray(five);
+        four = orderedArray(four);
+        full = orderedArray(full);
+        three = orderedArray(three);
+        two = orderedArray(two);
+        one = orderedArray(one);
+        high = orderedArray(high);
 
+        int[][] finalArray = new int[bidArray.length][6];
+        int indexNum = 0;
+        for (int a = indexNum; a < indexNum + high.length; a ++) {
+            finalArray[a] = high[a];
+        }
+        indexNum += high.length - 1;
 
+        for (int b = indexNum; b < indexNum + one.length; b ++) {
+            finalArray[b] = one[b];
+        }
+        indexNum += one.length - 1;
 
+        for (int c = indexNum; c < indexNum + two.length; c ++) {
+            finalArray[c] = two[c];
+        }
+        indexNum += two.length - 1;
 
+        for (int d = indexNum; d < indexNum + three.length; d ++) {
+            finalArray[d] = three[d];
+        }
+        indexNum += three.length - 1;
 
+        for (int e = indexNum; e < indexNum + full.length; e ++) {
+            finalArray[e] = full[e];
+        }
+        indexNum += full.length - 1;
+
+        for (int f = indexNum; f < indexNum + four.length; f ++) {
+            finalArray[f] = four[f];
+        }
+        indexNum += four.length - 1;
+
+        for (int g = indexNum; g < indexNum + five.length; g ++) {
+            finalArray[g] = five[g];
+        }
+
+        return finalArray;
     }
 
-    public int findBidVal() {
-        orderByHandType();
-        if (ifHaveRepeatedElement(orderedHandTypes)) {
-            orderByCard();
+    public int findBidVal(int[][] finalArray) {
+        int total = 0;
+
+        for (int x = 0; x < finalArray.length; x ++) {
+            total += finalArray[x][5] * (x + 1);
         }
 
-        int total = 0;
-        System.out.print("(");
-        for (int x = 1; x <= orderedBidArray.length; x ++) {
-            System.out.println("Bid Value: " + orderedBidArray[x - 1] + " at position " + x);
-            System.out.print(orderedBidArray[x - 1] + " * " + x + " + ");
-            total += orderedBidArray[x - 1] * x;
-        }
-        System.out.println("Total bid value calculated: " + total);
-        System.out.println(")");
         return total;
     }
 
     public String toString() {
-        return "Total Bid Value: " + findBidVal();
+        return "Total Bid Value: " + findBidVal(orderBidArrayByCards());
     }
 
 
