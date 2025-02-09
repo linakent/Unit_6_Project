@@ -25,6 +25,10 @@ public class Main {
             System.out.println(partOne);
             PartTwo partTwo = new PartTwo(fileArray, handsTypeArray);
             System.out.println(partTwo);
+
+            handsTypeArray = partOne.countingHands(fileArray, true);
+            PartTwo wildJack = new PartTwo(fileArray, handsTypeArray, true);
+            System.out.println(wildJack);
             }
         catch (FileNotFoundException fe) {
             System.out.println("File was not found");

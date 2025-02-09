@@ -1,7 +1,7 @@
 public class GroupHand {
     public int bidValue = 0;
     public String[] cards;
-    private PartTwo partTwo;
+    private boolean jackIsWild;
 
     public GroupHand (String playerHand){
         cards = new String[5];
@@ -15,8 +15,21 @@ public class GroupHand {
         playerHand = playerHand.substring(playerHand.indexOf(",") + 1);
         cards[4] = playerHand.substring(0, playerHand.indexOf("|"));
         bidValue = Integer.parseInt(playerHand.substring(playerHand.indexOf("|") + 1));
-        //int[] bdjhgjhdas = {0, 1};
-        //partTwo = new PartTwo(cards, bdjhgjhdas);
+    }
+
+    public GroupHand (String playerHand, boolean jack){
+        cards = new String[5];
+        cards[0] = playerHand.substring(0, playerHand.indexOf(","));
+        playerHand = playerHand.substring(playerHand.indexOf(",") + 1);
+        cards[1] = playerHand.substring(0, playerHand.indexOf(","));
+        playerHand = playerHand.substring(playerHand.indexOf(",") + 1);
+        cards[2] = playerHand.substring(0, playerHand.indexOf(","));
+        playerHand = playerHand.substring(playerHand.indexOf(",") + 1);
+        cards[3] = playerHand.substring(0, playerHand.indexOf(","));
+        playerHand = playerHand.substring(playerHand.indexOf(",") + 1);
+        cards[4] = playerHand.substring(0, playerHand.indexOf("|"));
+        bidValue = Integer.parseInt(playerHand.substring(playerHand.indexOf("|") + 1));
+        jackIsWild = jack;
     }
 
     public int countCard(String target) {
@@ -52,7 +65,7 @@ public class GroupHand {
             string = string.substring(string.indexOf("2") + 1);
             ifTwoPair = string.indexOf("2") != -1;
         }
-        if (partTwo.jackIsWild == true){
+        if (jackIsWild){
 
             if ((numOfAce == 3 || numOfKing == 3 || numOfQueen == 3 || numOfJack == 3 || numOf10 == 3 || numOf9 == 3 || numOf8 == 3 || numOf7 == 3 || numOf6 == 3 || numOf5 == 3 || numOf4 == 3 || numOf3 == 3 || numOf2 == 3) && (numOfAce == 2 || numOfKing == 2 || numOfQueen == 2 || numOfJack == 2 || numOf10 == 2 || numOf9 == 2 || numOf8 == 2 || numOf7 == 2 || numOf6 == 2 || numOf5 == 2 || numOf4 == 2 || numOf3 == 2 || numOf2 == 2)) {
                 if (numOfJack == 2 || numOfJack == 3) {
