@@ -9,7 +9,8 @@ public class Main {
 
         // step 1: create a file object
         File f = new File("src/input_file");
-        PartOne partOne = new PartOne();
+        HandTypes partOne = new HandTypes();
+        HandTypes partTwo = new HandTypes();
 
         String fileData = "";
         try {
@@ -21,14 +22,14 @@ public class Main {
 
             // a String array where every item in the array is a line from the file
             String[] fileArray = fileData.split("\n");
-            int [] handsTypeArray = partOne.countingHands(fileArray);
+            int[] handsTypeArray = partOne.countingHands(fileArray);
             System.out.println(partOne);
-            PartTwo partTwo = new PartTwo(fileArray, handsTypeArray);
-            System.out.println(partTwo);
+            SortHands sortHands = new SortHands(fileArray, handsTypeArray);
+            System.out.println(sortHands);
 
-            handsTypeArray = partOne.countingHands(fileArray, true);
-            PartTwo wildJack = new PartTwo(fileArray, handsTypeArray, true);
-            System.out.println(wildJack);
+            //int[] handsTypeArray2 = partTwo.countingHands(fileArray, true);
+            //SortHands wildJack = new SortHands(fileArray, handsTypeArray2, true);
+            //System.out.println(wildJack);
             }
         catch (FileNotFoundException fe) {
             System.out.println("File was not found");

@@ -1,16 +1,17 @@
 import java.util.ArrayList;
 import java.util.Arrays;
-public class PartTwo {
+public class SortHands {
     private int[] bidArray;
     private int[] orderedBidArray;
     private int[] handType;
     private int[] orderedHandTypes;
     private int[][] hands;
     private int[][] orderedHandsA;
-    private PartOne partOne;
+    private HandTypes partOne;
     private boolean jackIsWild;
 
-    public PartTwo(String[] inputArray, int[] handType) {
+    public SortHands(String[] inputArray, int[] handType) {
+        jackIsWild = false;
         bidArray = new int[inputArray.length];
         orderedBidArray = new int[bidArray.length];
         this.handType = new int[inputArray.length];
@@ -28,12 +29,12 @@ public class PartTwo {
             hands[x] = translateCardArray(hand.cards);
             bidArray[x] = hand.bidValue;
         }
-        jackIsWild = false;
-        partOne = new PartOne();
+        partOne = new HandTypes();
         partOne.countingHands(inputArray);
     }
 
-    public PartTwo(String[] inputArray, int[] handType, boolean jack) {
+    public SortHands(String[] inputArray, int[] handType, boolean jack) {
+        jackIsWild = jack;
         bidArray = new int[inputArray.length];
         orderedBidArray = new int[bidArray.length];
         this.handType = new int[inputArray.length];
@@ -51,8 +52,7 @@ public class PartTwo {
             hands[x] = translateCardArray(hand.cards);
             bidArray[x] = hand.bidValue;
         }
-        jackIsWild = jack;
-        partOne = new PartOne();
+        partOne = new HandTypes();
         partOne.countingHands(inputArray);
     }
 

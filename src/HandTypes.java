@@ -1,4 +1,4 @@
-public class PartOne {
+public class HandTypes {
 
     private int fiveOfAKind;
     private int fourOfAKind;
@@ -8,7 +8,7 @@ public class PartOne {
     private int onePair;
     private int highCard;
 
-    public PartOne() {
+    public HandTypes() {
         fiveOfAKind = 0;
         fourOfAKind = 0;
         fullHouse = 0;
@@ -45,7 +45,6 @@ public class PartOne {
         for (int x = 0; x < inputArray.length; x ++) {
             GroupHand hand = new GroupHand(inputArray[x]);
             String handType = hand.assignHand();
-            //System.out.println("Hand #" + x + " = " + handType);
             if (handType.equals("five")) {
                 fiveOfAKind ++;
                 handTypeArray[x] = 7;
@@ -83,7 +82,6 @@ public class PartOne {
         for (int x = 0; x < inputArray.length; x ++) {
             GroupHand hand = new GroupHand(inputArray[x], jack);
             String handType = hand.assignHand();
-            //System.out.println("Hand #" + x + " = " + handType);
             if (handType.equals("five")) {
                 fiveOfAKind ++;
                 handTypeArray[x] = 7;
@@ -117,8 +115,8 @@ public class PartOne {
     }
 
     public String toString() {
-        String temp = "Part One Answer: ";
-        temp += "\nNumber of five of a kind hands: " + fiveOfAKind;
+        String temp = "";
+        temp += "Number of five of a kind hands: " + fiveOfAKind;
         temp += "\nNumber of full house hands: " + fullHouse;
         temp += "\nNumber of four of a kind hands: " + fourOfAKind;
         temp += "\nNumber of three of a kind hands: " + threeOfAKind;
